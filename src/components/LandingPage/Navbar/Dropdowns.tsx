@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import Link from 'next/link'
-import { ChevronRight, FileText, Users, ArrowUpRight } from 'lucide-react'
+import { ChevronRight, FileText, Users, ArrowUpRight, BookOpenText } from 'lucide-react'
 import { useCasesData, resourcesData, aboutData } from '@/Data/LandingPage/Navigation'
 interface DropdownProps {
   trigger: React.ReactNode
@@ -87,7 +87,7 @@ export function ResourcesDropdown() {
               <div className="flex items-start gap-3">
                 <div className="mt-1 h-5 w-5 text-white/70 group-hover:text-blue-500">
                   {item.icon === 'FileText' && <FileText className="h-5 w-5" />}
-                  {item.icon === 'HelpCircle' && <Users className="h-5 w-5" />}
+                  {item.icon === 'HelpCircle' && <BookOpenText className="h-5 w-5" />}
                 </div>
                 <div>
                   <h4 className="font-medium text-white group-hover:text-blue-500">{item.title}</h4>

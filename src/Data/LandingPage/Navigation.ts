@@ -1,58 +1,69 @@
 export const useCasesData = {
-    sections: [
-      {
-        title: 'Diagrams',
-        icon: 'Box',
-        color: 'text-rose-500',
-        items: [
-          {
-            title: 'Process Flow Diagrams',
-            href: '#',
-            description: 'Create and manage process flows easily',
-          },
-          {
-            title: 'Threat Modeling',
-            href: '#',
-            description: 'Identify and analyze security threats',
-          },
-        ],
-      },
-      {
-        title: 'Docs',
-        icon: 'FileText',
-        color: 'text-cyan-500',
-        items: [
-          {
-            title: 'Design Docs',
-            href: '#',
-            description: 'Create and collaborate on design documents',
-          },
-          {
-            title: 'Documentation',
-            href: '#',
-            description: 'Build and maintain project documentation',
-          },
-        ],
-      },
-      {
-        title: 'Collaboration',
-        icon: 'Users',
-        color: 'text-green-500',
-        items: [
-          {
-            title: 'Whiteboard Interview',
-            href: '#',
-            description: 'Conduct remote technical interviews',
-          },
-          {
-            title: 'Brainstorming',
-            href: '#',
-            description: 'Collaborate on ideas in real-time',
-          },
-        ],
-      },
-    ],
-  }
+  sections: [
+    {
+      title: 'Content Suite',
+      icon: 'FileText',
+      color: 'text-purple-500',
+      items: [
+        {
+          title: 'Content Creation',
+          href: '#',
+          description: 'Create engaging content quickly with AI assistance',
+        },
+        {
+          title: 'Scheduling Content',
+          href: '#',
+          description: 'Organize and automate your content calendar',
+        },
+        {
+          title: 'AI Analytics',
+          href: '#',
+          description: 'Track performance and optimize with AI-powered insights',
+        },
+      ],
+    },
+    {
+      title: 'Collaboration',
+      icon: 'Users',
+      color: 'text-blue-500',
+      items: [
+        {
+          title: 'Collaborative Workflow',
+          href: '#',
+          description: 'Work together in real-time for seamless content development',
+        },
+        {
+          title: 'Automated Workflow',
+          href: '#',
+          description: 'Streamline repetitive tasks to save time',
+        },
+        {
+          title: 'AI Assistant',
+          href: '#',
+          description: 'Let AI help draft, review, and refine your content',
+        },
+      ],
+    },
+    {
+      title: 'Post Management',
+      icon: 'Edit',
+      color: 'text-orange-500',
+      items: [
+        {
+          title: 'Manage Content from One Place',
+          href: '#',
+          description: 'Write, edit, or delete content effortlessly',
+        },
+        {
+          title: 'Social Dashboard',
+          href: '#',
+          description: 'Oversee all your social channels from a single, unified dashboard',
+        },
+      ],
+    },
+  ],
+}
+
   
   export const resourcesData = {
     navigation: [
@@ -63,9 +74,9 @@ export const useCasesData = {
         icon: 'FileText',
       },
       {
-        title: 'User guides',
+        title: 'Docs',
         href: '#',
-        description: 'Learn how to get the best out of Summit to grow online.',
+        description: 'Learn how to get the best out of NAME to grow online.',
         icon: 'HelpCircle',
       },
     ],
