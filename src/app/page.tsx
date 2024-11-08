@@ -1,3 +1,4 @@
+import { FeatureSections } from "@/components/LandingPage/FeatureSection/FeatureSections";
 import { HeroSection } from "@/components/LandingPage/HeroSection/HeroSection";
 import Navbar from "@/components/LandingPage/Navbar/Navbar";
 import { Inter } from "@next/font/google";
@@ -15,6 +16,9 @@ export default function Home() {
       </div>
       <div className="">
         <HeroSection />
+      </div>
+      <div className="">
+        <FeatureSections />
       </div>
     </>
   );

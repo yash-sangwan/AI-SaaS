@@ -109,9 +109,9 @@ export function DashboardPreview() {
 
             {/* Channel 1 */}
             <div className="space-y-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                <Hash className="w-6 h-6 text-white" />
-              </div>
+            <div className="relative w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-8 before:bg-white before:-ml-3 before:rounded-full">
+                    <Hash className="w-6 h-6 text-white" />
+                  </div>
               <div className="space-y-2">
                 <div className="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center">
                   <FaYoutube className="w-7 h-7 text-red-600" />

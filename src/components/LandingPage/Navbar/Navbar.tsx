@@ -39,7 +39,7 @@ export default function Navbar() {
           className="absolute inset-0 z-[-1]"
           style={{
             backgroundColor: 'rgba(0, 0, 255, 0.1)',
-            backdropFilter: 'blur(8px)',
+            backdropFilter: 'blur(100px)',
           }}
         />
 
