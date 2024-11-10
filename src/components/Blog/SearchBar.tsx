@@ -1,12 +1,23 @@
 'use client'
 
 import { Search } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function SearchBar() {
   const [query, setQuery] = useState('')
+  const [scrolled, setScrolled] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50
+      setScrolled(isScrolled)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -16,13 +27,18 @@ export default function SearchBar() {
   }
 
   return (
-    <form onSubmit={handleSearch} className="relative">
+    <form 
+      onSubmit={handleSearch} 
+      className={`relative transition-all duration-300 ${
+        scrolled ? 'mt-12' : 'mt-4'
+      }`}
+    >
       <input
         type="text"
         placeholder="Read about..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="w-full px-4 py-2 rounded-full bg-white bg-opacity-10 border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 text-white placeholder-gray-400"
+        className="w-full px-4 py-2 rounded-full bg-white bg-opacity-10 border border-gray-700 focus:outline-none focus:ring-1  text-white placeholder-gray-400"
       />
       <button
         type="submit"

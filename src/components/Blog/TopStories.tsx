@@ -19,16 +19,16 @@ export default function TopStories() {
 
   return (
     <div>
-      <h3 className="text-xl font-bold mb-6 border-b border-purple-700 pb-2">Top Posts</h3>
+      <h3 className="text-xl font-bold mb-6 border-b border-blue-700 pb-2">Top Posts</h3>
       <div
         ref={scrollRef}
-        className="space-y-6 md:space-y-6 overflow-x-auto md:overflow-x-hidden flex flex-col"
+        className="space-y-6 md:space-y-6 overflow-x-auto md:overflow-x-hidden flex flex-col scrollbar-hide"
         style={{ scrollSnapType: isMobile ? 'x mandatory' : 'none' }}
       >
         {topStories.map((story) => (
           <article
             key={story.id}
-            className="flex-shrink-0 w-full flex items-start space-x-4 bg-white bg-opacity-5 rounded-lg p-4 backdrop-blur-sm transition-transform hover:scale-105"
+            className="flex-shrink-0 w-full flex items-start space-x-4 bg-white bg-opacity-5 rounded-lg p-4 backdrop-blur-sm transition-transform hover:scale-105 hover:bg-opacity-10"
             style={{ scrollSnapAlign: isMobile ? 'start' : 'none' }}
           >
             <Image
@@ -40,7 +40,7 @@ export default function TopStories() {
             />
             <div>
               <h4 className="font-semibold mb-1">
-                <Link href="#" className="hover:text-purple-400 transition-colors">
+                <Link href="#" className="hover:text-blue-400 transition-colors">
                   {story.title}
                 </Link>
               </h4>

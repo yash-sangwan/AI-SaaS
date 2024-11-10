@@ -35,7 +35,7 @@ export async function searchPosts(query: string) {
     console.error('Error searching posts:', error)
     
     // Fallback to demo data
-    const allPosts = getFallbackPosts(1, 50).posts
+    const allPosts = getFallbackPosts(1, 5).posts
     const filteredPosts = allPosts.filter(post => 
       post.title.toLowerCase().includes(query.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(query.toLowerCase())
@@ -62,12 +62,12 @@ export async function getPostBySlug(slug: string) {
     console.error('Error fetching post:', error)
     
     // Fallback to demo data
-    const allPosts = getFallbackPosts(1, 50).posts
+    const allPosts = getFallbackPosts(1, 5).posts
     return allPosts.find(post => post.slug === slug)
   }
 }
 
-function getFallbackPosts(page: number, totalPosts: number = 50) {
+function getFallbackPosts(page: number, totalPosts: number = 5) {
   const startIndex = (page - 1) * POSTS_PER_PAGE
   const endIndex = startIndex + POSTS_PER_PAGE
   
