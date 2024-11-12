@@ -115,3 +115,20 @@ body {
 .animate-float-right { animation: float-right 3s ease-in-out infinite; }
 .animate-float-top-left { animation: float-top-left 3s ease-in-out infinite; }
 .animate-float-bottom-right { animation: float-bottom-right 3s ease-in-out infinite; }
+
+
+/* for blog hero section */
+@keyframes twinkle {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
