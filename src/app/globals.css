@@ -3,13 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* globals.css */
 @font-face {
   font-family: 'TestNational2Condensed';
   src: url('/fonts/TestNational2Condensed-Black.otf') format('opentype');
   font-weight: 800;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Sailec';
+  src: url('/fonts/Sailec-Bold.otf') format('opentype');
+  font-style: normal;
+}
+
 
 
 body {

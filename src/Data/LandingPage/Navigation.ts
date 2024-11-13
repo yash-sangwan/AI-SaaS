@@ -54,11 +54,7 @@ export const useCasesData = {
           href: '#',
           description: 'Write, edit, or delete content effortlessly',
         },
-        {
-          title: 'Social Dashboard',
-          href: '#',
-          description: 'Oversee all your social channels from a single, unified dashboard',
-        },
+  
       ],
     },
   ],

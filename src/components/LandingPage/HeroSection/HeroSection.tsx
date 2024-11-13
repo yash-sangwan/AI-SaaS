@@ -43,7 +43,7 @@ function Particles() {
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute bg-gradient-to-br from-blue-300 to-green-300"
+          className="absolute bg-gradient-to-br from-blue-500 to-green-500"
           style={{
             width: `${particle.size}px`,
             height: `${particle.size}px`,

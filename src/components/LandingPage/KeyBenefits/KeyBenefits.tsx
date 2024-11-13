@@ -8,7 +8,7 @@ export default function KeyBenefits() {
       <div className="container mx-auto max-w-7xl">
         <h2 className="text-center mb-16 text-4xl font-bold">
           <span className="text-white">What makes </span>
-          <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-green-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-green-500 bg-clip-text text-transparent">
             ContentAI great?
           </span>
         </h2>
