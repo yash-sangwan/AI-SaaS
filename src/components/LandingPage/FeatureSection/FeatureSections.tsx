@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import React, { useRef, useEffect, useState } from "react";
-import { PenLine, Users, Layers } from "lucide-react";
+import { PenLine, Users, Layers } from 'lucide-react';
 import ContentSuite from "./ContentSuite";
 import Collaboration from "./Collaboration";
 import ContentManagement from "./ContentManagement";
@@ -24,14 +24,14 @@ const sections = [
 
 export function FeatureSections() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const sectionRefs = useRef(
-    sections.map(() => React.createRef<HTMLDivElement>())
-  );
+  const [isButtonContainerVisible, setIsButtonContainerVisible] = useState(false);
+  const sectionRefs = useRef(sections.map(() => React.createRef<HTMLDivElement>()));
+  const mainDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const intersectingSections = new Set<string>();
 
-    const observer = new IntersectionObserver(
+    const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const index = sectionRefs.current.findIndex(
@@ -44,26 +44,34 @@ export function FeatureSections() {
               setActiveSection(sectionId);
             } else {
               intersectingSections.delete(sectionId);
-              if (intersectingSections.size === 0) {
-                setActiveSection(null);
-              } else {
-                setActiveSection(Array.from(intersectingSections)[0]);
-              }
+              setActiveSection(intersectingSections.size ? Array.from(intersectingSections)[0] : null);
             }
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
+    );
+
+    const mainDivObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsButtonContainerVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.1 }
     );
 
     sectionRefs.current.forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
+      if (ref.current) sectionObserver.observe(ref.current);
     });
 
+    if (mainDivRef.current) {
+      mainDivObserver.observe(mainDivRef.current);
+    }
+
     return () => {
-      observer.disconnect();
+      sectionObserver.disconnect();
+      mainDivObserver.disconnect();
     };
   }, []);
 
@@ -75,40 +83,38 @@ export function FeatureSections() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white">
-      {activeSection && (
-        <div className="fixed left-8 top-1/2 -translate-y-1/2 space-y-6 z-50">
-          {sections.map((section, index) => (
-            <button
-              key={section.id}
-              onClick={() => scrollToSection(index)}
-              className={`flex items-center gap-3 transition-all ${
+    <div ref={mainDivRef} className="min-h-screen bg-[#0A0A0A] text-white">
+      <div className={`fixed left-8 top-1/2 -translate-y-1/2 space-y-6 z-50 transition-opacity duration-300 hidden lg:block ${isButtonContainerVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        {sections.map((section, index) => (
+          <button
+            key={section.id}
+            onClick={() => scrollToSection(index)}
+            className={`flex items-center gap-3 transition-all ${
+              activeSection === section.id
+                ? "opacity-100"
+                : "opacity-40 hover:opacity-70"
+            }`}
+          >
+            <div
+              className={`h-12 w-12 rounded-xl ${
                 activeSection === section.id
-                  ? "opacity-100"
-                  : "opacity-40 hover:opacity-70"
+                  ? `bg-${section.color}-600/20`
+                  : "bg-white/10"
               }`}
             >
-              <div
-                className={`h-12 w-12 rounded-xl ${
-                  activeSection === section.id
-                    ? `bg-${section.color}-600/20`
-                    : "bg-white/10"
-                }`}
-              >
-                <div className="h-full w-full flex items-center justify-center">
-                  <section.icon
-                    className={`h-6 w-6 ${
-                      activeSection === section.id
-                        ? `text-${section.color}-400`
-                        : "text-white"
-                    }`}
-                  />
-                </div>
+              <div className="h-full w-full flex items-center justify-center">
+                <section.icon
+                  className={`h-6 w-6 ${
+                    activeSection === section.id
+                      ? `text-${section.color}-400`
+                      : "text-white"
+                  }`}
+                />
               </div>
-            </button>
-          ))}
-        </div>
-      )}
+            </div>
+          </button>
+        ))}
+      </div>
 
       <div className="relative bg-[#070314]">
         <div ref={sectionRefs.current[0]}>
