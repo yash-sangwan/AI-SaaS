@@ -239,43 +239,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-
-      {/* Navigation Dots */}
-      <div
-        className={`fixed left-8 top-1/2 -translate-y-1/2 space-y-6 z-50 transition-opacity duration-300 ${
-          showNavigation ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        {sections.map((section) => (
-          <button
-            key={section.id}
-            onClick={() => scrollToSection(section.id)}
-            className={`flex items-center gap-3 transition-all ${
-              activeSection === section.id
-                ? "opacity-100"
-                : "opacity-40 hover:opacity-70"
-            }`}
-          >
-            <div
-              className={`h-12 w-12 rounded-xl ${
-                activeSection === section.id
-                  ? `bg-${section.color}-600/20`
-                  : "bg-white/10"
-              }`}
-            >
-              <div className="h-full w-full flex items-center justify-center">
-                <section.icon
-                  className={`h-6 w-6 ${
-                    activeSection === section.id
-                      ? `text-${section.color}-400`
-                      : "text-white"
-                  }`}
-                />
-              </div>
-            </div>
-          </button>
-        ))}
-      </div>
     </>
   );
 }
