@@ -1,9 +1,10 @@
+
 export const useCasesData = {
   sections: [
     {
       title: 'Content Suite',
-      icon: 'FileText',
-      color: 'text-purple-500',
+      icon: 'ContentSuite',
+      color: 'text-purple-400',
       items: [
         {
           title: 'Content Creation',
@@ -25,7 +26,7 @@ export const useCasesData = {
     {
       title: 'Collaboration',
       icon: 'Users',
-      color: 'text-blue-500',
+      color: 'text-yellow-400',
       items: [
         {
           title: 'Collaborative Workflow',
@@ -45,9 +46,9 @@ export const useCasesData = {
       ],
     },
     {
-      title: 'Post Management',
+      title: 'One For All',
       icon: 'Edit',
-      color: 'text-orange-500',
+      color: 'text-pink-500',
       items: [
         {
           title: 'Manage Content from One Place',

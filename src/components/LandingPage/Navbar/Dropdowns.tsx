@@ -4,6 +4,11 @@ import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { ChevronRight, FileText, Users, ArrowUpRight, BookOpenText } from 'lucide-react'
 import { useCasesData, resourcesData, aboutData } from '@/Data/LandingPage/Navigation'
+import { assets } from '@/Assets/Assets'
+import { FaBox, FaUserGraduate } from 'react-icons/fa'
+import { FaUserGroup } from "react-icons/fa6";
+import { MdDashboard } from "react-icons/md";
+
 interface DropdownProps {
   trigger: React.ReactNode
   children: React.ReactNode
@@ -51,11 +56,9 @@ export function UseCasesDropdown() {
       {useCasesData.sections.map((section) => (
         <div key={section.title} className="space-y-4">
           <div className="flex items-center gap-2">
-            <img
-              src={`/icons/${section.icon.toLowerCase()}.svg`}
-              alt={`${section.title} icon`}
-              className={`h-5 w-5 ${section.color}`}
-            />
+            {section.title === 'Content Suite' && <FaBox className={`h-4 w-4 ${section.color}`} />}
+            {section.title === 'Collaboration' && <FaUserGroup className={`h-5 w-5 ${section.color}`} />}
+            {section.title === 'One For All' && <MdDashboard className={`h-5 w-5 ${section.color}`} />}
             <h3 className="font-medium text-white">{section.title}</h3>
           </div>
           <div className="space-y-2">

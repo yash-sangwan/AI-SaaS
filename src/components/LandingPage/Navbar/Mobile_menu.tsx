@@ -4,6 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { ChevronDown, X, FileText, Users, ArrowUpRight, ChevronRight } from 'lucide-react'
 import { useCasesData, resourcesData, aboutData } from '@/Data/LandingPage/Navigation'
+import { FaBox } from 'react-icons/fa'
+import { FaUserGroup } from 'react-icons/fa6'
+import { MdDashboard } from 'react-icons/md'
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -57,11 +60,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               {useCasesData.sections.map((section) => (
                 <div key={section.title}>
                   <div className="flex items-center gap-2 text-white">
-                    <img
-                      src={`/icons/${section.icon.toLowerCase()}.svg`}
-                      alt={`${section.title} icon`}
-                      className={`h-5 w-5 ${section.color}`}
-                    />
+                  {section.title === 'Content Suite' && <FaBox className={`h-4 w-4 ${section.color}`} />}
+            {section.title === 'Collaboration' && <FaUserGroup className={`h-5 w-5 ${section.color}`} />}
+            {section.title === 'One For All' && <MdDashboard className={`h-5 w-5 ${section.color}`} />}
                     <span>{section.title}</span>
                   </div>
                   <div className="mt-2 grid grid-cols-2 gap-2">

@@ -26,18 +26,18 @@ function VideoCard({ title, author, image }: VideoCardProps) {
           width={800}
         />
         <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-          <div className="rounded-full bg-red-500 p-3 cursor-pointer hover:bg-red-600 transition-colors">
-            <Play className="h-6 w-6 text-white" fill="white" />
+          <div className="rounded-full bg-red-500 p-2 sm:p-3 cursor-pointer hover:bg-red-600 transition-colors">
+            <Play className="h-4 w-4 sm:h-6 sm:w-6 text-white" fill="white" />
           </div>
         </div>
       </div>
-      <CardHeader className="flex flex-row items-center gap-3 p-4">
-        <Avatar className="h-8 w-8">
+      <CardHeader className="flex flex-row items-center gap-3 p-2 sm:p-4">
+        <Avatar className="h-6 w-6 sm:h-8 sm:w-8">
           <AvatarImage alt={author.name} src={author.avatar} />
           <AvatarFallback>{author.name[0]}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <CardTitle className="text-sm text-white">{title}</CardTitle>
+          <CardTitle className="text-xs sm:text-sm text-white">{title}</CardTitle>
           <div className="flex items-center gap-1 text-xs text-zinc-400">
             <span>{author.name}</span>
             <span>·</span>
@@ -61,18 +61,18 @@ interface TestimonialProps {
 function TestimonialCard({ author, content }: TestimonialProps) {
   return (
     <Card className="bg-white/5 border-zinc-800 h-full flex flex-col">
-      <CardHeader className="flex flex-row items-center gap-3 p-4">
-        <Avatar className="h-8 w-8">
+      <CardHeader className="flex flex-row items-center gap-3 p-2 sm:p-4">
+        <Avatar className="h-6 w-6 sm:h-8 sm:w-8">
           <AvatarImage alt={author.name} src={author.avatar} />
           <AvatarFallback>{author.name[0]}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <div className="font-semibold text-sm text-white">{author.name}</div>
+          <div className="font-semibold text-xs sm:text-sm text-white">{author.name}</div>
           <div className="text-xs text-zinc-400">{author.role}</div>
         </div>
       </CardHeader>
-      <CardContent className="flex-grow">
-        <p className="text-zinc-300 text-sm">{content}</p>
+      <CardContent className="flex-grow p-2 sm:p-4">
+        <p className="text-zinc-300 text-xs sm:text-sm">{content}</p>
       </CardContent>
     </Card>
   )
@@ -149,44 +149,44 @@ export default function CreatorBoxes() {
   ]
 
   return (
-    <div className="p-6 bg-gradient-to-b from-[#220a35] to-[#070314]  min-h-screen flex justify-center items-start">
-      <div className="grid gap-4 md:grid-cols-5 max-w-6xl w-full">
+    <div className="p-4 sm:p-6 bg-gradient-to-b from-[#220a35] to-[#070314] min-h-screen flex justify-center items-start">
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-w-6xl w-full">
         {/* First row */}
-        <div className="md:col-span-1">
+        <div className="sm:col-span-1">
           <TestimonialCard {...testimonials[0]} />
         </div>
-        <div className="md:col-span-1">
+        <div className="sm:col-span-1">
           <TestimonialCard {...testimonials[1]} />
         </div>
-        <div className="md:col-span-2">
+        <div className="sm:col-span-2 md:col-span-1 lg:col-span-2">
           <VideoCard {...videos[0]} />
         </div>
-        <div className="md:col-span-1">
+        <div className="sm:col-span-1">
           <TestimonialCard {...testimonials[1]} />
         </div>
 
         {/* Second row */}
-        <div className="md:col-span-2">
+        <div className="sm:col-span-2 md:col-span-1 lg:col-span-2">
           <VideoCard {...videos[1]} />
         </div>
-        <div className="md:col-span-1">
+        <div className="sm:col-span-1">
           <TestimonialCard {...testimonials[2]} />
         </div>
-        <div className="md:col-span-2">
+        <div className="sm:col-span-2">
           <TestimonialCard {...testimonials[3]} />
         </div>
 
         {/* Third row */}
-        <div className="md:col-span-1">
+        <div className="sm:col-span-1">
           <TestimonialCard {...testimonials[0]} />
         </div>
-        <div className="md:col-span-2">
+        <div className="sm:col-span-2 md:col-span-1 lg:col-span-2">
           <VideoCard {...videos[2]} />
         </div>
-        <div className="md:col-span-1">
+        <div className="sm:col-span-1">
           <TestimonialCard {...testimonials[1]} />
         </div>
-        <div className="md:col-span-1">
+        <div className="sm:col-span-1">
           <TestimonialCard {...testimonials[1]} />
         </div>
       </div>

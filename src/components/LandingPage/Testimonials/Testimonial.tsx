@@ -1,15 +1,108 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react"
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Card } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  avatar: string;
+}
+
+interface SmallScreenTestimonialsProps {
+  testimonials: Testimonial[];
+}
+
+const SmallScreenTestimonials: React.FC<SmallScreenTestimonialsProps> = ({ testimonials }) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const totalTestimonials = testimonials.length
+  const testimonialRef = useRef<HTMLDivElement>(null)
+
+  const nextTestimonial = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalTestimonials)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalTestimonials) % totalTestimonials)
+  }
+
+  useEffect(() => {
+    const handleSwipe = (e: TouchEvent) => {
+      if (e.target instanceof Element && e.target.closest('.testimonial-card')) {
+        const swipeThreshold = 50
+        const touchDelta = e.changedTouches[0].clientX - e.touches[0].clientX
+        if (touchDelta > swipeThreshold) {
+          prevTestimonial()
+        } else if (touchDelta < -swipeThreshold) {
+          nextTestimonial()
+        }
+      }
+    }
+
+    const element = testimonialRef.current
+    if (element) {
+      element.addEventListener('touchend', handleSwipe)
+      return () => element.removeEventListener('touchend', handleSwipe)
+    }
+  }, [])
+
+  return (
+    <div className="relative overflow-hidden" ref={testimonialRef}>
+      <div
+        className="flex transition-transform duration-300 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {testimonials.map((testimonial, index) => (
+          <Card
+            key={index}
+            className="testimonial-card bg-white/5 border-none shadow-lg flex-shrink-0 w-full"
+          >
+            <blockquote className="p-5 h-full flex flex-col justify-between">
+              <p className="text-sm text-white leading-relaxed mb-4">"{testimonial.quote}"</p>
+              <footer className="flex items-center mt-4">
+                <Avatar className="h-10 w-10 mr-3">
+                  <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                  <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
+                </Avatar>
+                <div className="text-white">
+                  <div className="font-semibold text-sm">{testimonial.author}</div>
+                  <div className="text-xs opacity-75">{testimonial.role}</div>
+                </div>
+              </footer>
+            </blockquote>
+          </Card>
+        ))}
+      </div>
+      <div className="flex justify-center mt-4">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={prevTestimonial}
+          className="mr-2 text-white hover:bg-white hover:text-black"
+        >
+          <ChevronLeft className="h-6 w-6" />
+          <span className="sr-only">Previous testimonial</span>
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={nextTestimonial}
+          className="ml-2 text-white hover:bg-white hover:text-black"
+        >
+          <ChevronRight className="h-6 w-6" />
+          <span className="sr-only">Next testimonial</span>
+        </Button>
+      </div>
+    </div>
+  )
+}
 
 export default function Component() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
       quote:
         "The AI-powered content suggestions have revolutionized our content strategy. We're creating twice the content in half the time, with better engagement metrics than ever.",
@@ -33,43 +126,55 @@ export default function Component() {
     },
     {
       quote:
-        "The platform's ability to maintain our brand voice while suggesting optimizations has made scaling our content operation effortless.",
-      author: "David Park",
-      role: "CEO at Narrative AI",
+        "The AI-powered content suggestions have revolutionized our content strategy. We're creating twice the content in half the time, with better engagement metrics than ever.",
+      author: "Sarah Chen",
+      role: "Content Director at TechFlow Digital",
       avatar: "/placeholder.svg?height=50&width=50",
     },
     {
       quote:
-        "Our content team's productivity has skyrocketed since implementing this AI-powered platform. It's been a game-changer for our digital presence.",
-      author: "Olivia Martinez",
-      role: "Head of Digital at InnovateTech",
+        "The automated scheduling and analytics insights have transformed how we approach content distribution. It's like having an entire data science team at your fingertips.",
+      author: "Marcus Rodriguez",
+      role: "Marketing Lead at GrowthWise",
       avatar: "/placeholder.svg?height=50&width=50",
     },
     {
       quote:
-        "The AI's ability to learn our brand voice and style has made content creation so much more efficient. It's like having a tireless assistant who knows us inside out.",
-      author: "Alex Johnson",
-      role: "Brand Manager at FutureBrand",
+        "From ideation to publication, the AI suite has streamlined our entire content workflow. The smart recommendations and trend analysis are game-changing.",
+      author: "Emma Thompson",
+      role: "Editorial Manager at ContentPro",
       avatar: "/placeholder.svg?height=50&width=50",
-    },
-    {
-      quote:
-        "We've seen a 40% increase in engagement since using the AI-powered content optimization features. The results speak for themselves.",
-      author: "Rachel Lee",
-      role: "Social Media Strategist at Viral Ventures",
-      avatar: "/placeholder.svg?height=50&width=50",
-    },
-    {
-      quote:
-        "The predictive analytics have helped us stay ahead of trends and tailor our content strategy in real-time. It's like having a crystal ball for content marketing.",
-      author: "Michael Brown",
-      role: "CMO at TrendSetters Inc.",
-      avatar: "/placeholder.svg?height=50&width=50",
-    },
+    }
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleTestimonials, setVisibleTestimonials] = useState(3);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  const totalTestimonials = testimonials.length;
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setVisibleTestimonials(3);
+        setIsSmallScreen(false);
+      } else if (window.innerWidth >= 768) {
+        setVisibleTestimonials(2);
+        setIsSmallScreen(false);
+      } else {
+        setVisibleTestimonials(1);
+        setIsSmallScreen(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const nextTestimonials = () => {
-    if (currentIndex < testimonials.length - 3) {
+    if (currentIndex < totalTestimonials - visibleTestimonials) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     }
   };
@@ -80,80 +185,76 @@ export default function Component() {
     }
   };
 
+  const itemWidth = 100 / visibleTestimonials - (2 * 2 / visibleTestimonials);
+  const translateX = -(currentIndex * (100 / visibleTestimonials));
+
   return (
-    <section className="w-full py-20 bg-gradient-to-b from-[#070314] to-[#220a35]">
+    <section className="w-full py-12 md:py-20 bg-gradient-to-b from-[#070314] to-[#220a35]">
       <div className="container mx-auto px-4">
-      <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16">
-      Empowering <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-green-500 bg-clip-text text-transparent">Content Creators</span> with AI
-    </h2>
-        <div className="relative max-w-7xl mx-auto">
-          <div className="flex items-center">
-            {/* Previous Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={prevTestimonials}
-              className="absolute left-[-10px] z-10 text-white hover:bg-white hover:text-black -translate-x-full"
-            >
-              <ChevronLeft className="h-8 w-8" />
-              <span className="sr-only">Previous testimonials</span>
-            </Button>
-
-            {/* Testimonials Container */}
-            <div className="overflow-hidden w-full">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentIndex * 33.33}%)` }}
-              >
-                {testimonials.map((testimonial, index) => (
-                  <Card
-                    key={index}
-                    className="bg-white/5 border-none shadow-lg w-[32.33%] flex-shrink-0 px-4 "
-                    style={{
-                      marginRight:
-                        index !== testimonials.length - 1 ? "16px" : "0",
-                    }}
-                  >
-                    <blockquote className=" p-5 h-full flex flex-col justify-between">
-                      <p className="text-sm md:text-base text-white leading-relaxed mb-4">
-                        "{testimonial.quote}"
-                      </p>
-                      <footer className="flex items-center mt-4">
-                        <Avatar className="h-10 w-10 mr-3">
-                          <AvatarImage
-                            src={testimonial.avatar}
-                            alt={testimonial.author}
-                          />
-                          <AvatarFallback>
-                            {testimonial.author[0]}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div className="text-white">
-                          <div className="font-semibold text-sm">
-                            {testimonial.author}
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-8 md:mb-16">
+          Empowering{" "}
+          <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-green-500 bg-clip-text text-transparent">
+            Content Creators
+          </span>{" "}
+          with AI
+        </h2>
+        <div className="relative max-w-6xl mx-auto">
+          {isSmallScreen ? (
+            <SmallScreenTestimonials testimonials={testimonials} />
+          ) : (
+            <>
+              <div className="overflow-hidden w-full">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(${translateX}%)` }}
+                >
+                  {testimonials.map((testimonial, index) => (
+                    <Card
+                      key={index}
+                      className="bg-white/5 border-none shadow-lg flex-shrink-0 mx-2" 
+                      style={{ width: `calc(${itemWidth}% - 2px)` }} 
+                    >
+                      <blockquote className="p-5 h-full flex flex-col justify-between">
+                        <p className="text-sm md:text-base text-white leading-relaxed mb-4">"{testimonial.quote}"</p>
+                        <footer className="flex items-center mt-4">
+                          <Avatar className="h-10 w-10 mr-3">
+                            <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                            <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
+                          </Avatar>
+                          <div className="text-white">
+                            <div className="font-semibold text-sm">{testimonial.author}</div>
+                            <div className="text-xs opacity-75">{testimonial.role}</div>
                           </div>
-                          <div className="text-xs opacity-75">
-                            {testimonial.role}
-                          </div>
-                        </div>
-                      </footer>
-                    </blockquote>
-                  </Card>
-                ))}
+                        </footer>
+                      </blockquote>
+                    </Card>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            {/* Next Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={nextTestimonials}
-              className="absolute right-[-10px] z-10 text-white hover:bg-white hover:text-black translate-x-full"
-            >
-              <ChevronRight className="h-8 w-8" />
-              <span className="sr-only">Next testimonials</span>
-            </Button>
-          </div>
+              <div className="flex justify-center mt-6 md:mt-8">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={prevTestimonials}
+                  className="mr-2 text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={currentIndex === 0}
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                  <span className="sr-only">Previous testimonial</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={nextTestimonials}
+                  className="ml-2 text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={currentIndex >= totalTestimonials - visibleTestimonials}
+                >
+                  <ChevronRight className="h-6 w-6" />
+                  <span className="sr-only">Next testimonial</span>
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
