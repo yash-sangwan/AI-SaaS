@@ -3,7 +3,7 @@ import GetStarted from "@/components/LandingPage/GetStarted/GetStarted";
 import { HeroSection } from "@/components/LandingPage/HeroSection/HeroSection";
 import KeyBenefits from "@/components/LandingPage/KeyBenefits/KeyBenefits";
 import Navbar from "@/components/LandingPage/Navbar/Navbar";
-import Testimonials from "@/components/LandingPage/Testimonials/Testimonial";
+import Testimonials from "@/components/LandingPage/Testimonials/ContentTestimonial";
 import CreatorBoxes from "@/components/LandingPage/CreatorBoxes/CreatorBoxes";
 import { Inter } from "@next/font/google";
 import { Key } from "lucide-react";

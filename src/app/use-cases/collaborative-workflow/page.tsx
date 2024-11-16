@@ -1,39 +1,41 @@
 import Footer from '@/components/LandingPage/Footer/Footer'
 import GetStarted from '@/components/LandingPage/GetStarted/GetStarted'
 import Navbar from '@/components/LandingPage/Navbar/Navbar'
-import ContentHeroSection from '@/components/UseCases/ContentCreation/HeroSection'
+import CollaborationTestimonials from '@/components/LandingPage/Testimonials/CollaborationTestimonials'
+import CollaborativeWorkflowHeroSection from '@/components/UseCases/CollaborativeWorkflow/HeroSection'
+import WhyCollaboration from '@/components/UseCases/CollaborativeWorkflow/WhyCollaboration'
 import Testimonial from '@/components/UseCases/ContentCreation/Testimonial'
-import WhyContentCreation from '@/components/UseCases/ContentCreation/WhyContentCreation'
 import React from 'react'
 
 const page = () => {
   return (
 <>
 <div className="">
-  <Navbar />
+    <Navbar />
 </div>
 <div className="">
-<ContentHeroSection />
+    <CollaborativeWorkflowHeroSection/>
 </div>
 <div className="">
-<WhyContentCreation/>
+    <WhyCollaboration/>
 </div>
 <div className="">
-  <Testimonial/>
+  <CollaborationTestimonials/>
 </div>
 <div className="">
-<GetStarted 
+<GetStarted
         background="bg-[#070314]"
         title="Experience the power of AI-driven content creation"
         buttonText="Get Started"
         buttonLink="/"
-        paddingy="py-20"
+        paddingy="py-2"
       />
 </div>
 <div className="">
   <Footer/>
 </div>
 </>
+
 )
 }
 

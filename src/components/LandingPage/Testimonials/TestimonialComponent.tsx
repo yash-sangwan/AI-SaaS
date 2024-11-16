@@ -13,11 +13,13 @@ interface Testimonial {
   avatar: string;
 }
 
-interface SmallScreenTestimonialsProps {
+interface TestimonialProps {
   testimonials: Testimonial[];
+  bgGradient?: string;
+  titleGradient?: string;
 }
 
-const SmallScreenTestimonials: React.FC<SmallScreenTestimonialsProps> = ({ testimonials }) => {
+const SmallScreenTestimonials: React.FC<{ testimonials: Testimonial[] }> = ({ testimonials }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const totalTestimonials = testimonials.length
   const testimonialRef = useRef<HTMLDivElement>(null)
@@ -83,70 +85,29 @@ const SmallScreenTestimonials: React.FC<SmallScreenTestimonialsProps> = ({ testi
           size="icon"
           onClick={prevTestimonial}
           className="mr-2 text-white hover:bg-white hover:text-black"
+          aria-label="Previous testimonial"
         >
           <ChevronLeft className="h-6 w-6" />
-          <span className="sr-only">Previous testimonial</span>
         </Button>
         <Button
           variant="ghost"
           size="icon"
           onClick={nextTestimonial}
           className="ml-2 text-white hover:bg-white hover:text-black"
+          aria-label="Next testimonial"
         >
           <ChevronRight className="h-6 w-6" />
-          <span className="sr-only">Next testimonial</span>
         </Button>
       </div>
     </div>
   )
 }
 
-export default function Component() {
-  const testimonials: Testimonial[] = [
-    {
-      quote:
-        "The AI-powered content suggestions have revolutionized our content strategy. We're creating twice the content in half the time, with better engagement metrics than ever.",
-      author: "Sarah Chen",
-      role: "Content Director at TechFlow Digital",
-      avatar: "/placeholder.svg?height=50&width=50",
-    },
-    {
-      quote:
-        "The automated scheduling and analytics insights have transformed how we approach content distribution. It's like having an entire data science team at your fingertips.",
-      author: "Marcus Rodriguez",
-      role: "Marketing Lead at GrowthWise",
-      avatar: "/placeholder.svg?height=50&width=50",
-    },
-    {
-      quote:
-        "From ideation to publication, the AI suite has streamlined our entire content workflow. The smart recommendations and trend analysis are game-changing.",
-      author: "Emma Thompson",
-      role: "Editorial Manager at ContentPro",
-      avatar: "/placeholder.svg?height=50&width=50",
-    },
-    {
-      quote:
-        "The AI-powered content suggestions have revolutionized our content strategy. We're creating twice the content in half the time, with better engagement metrics than ever.",
-      author: "Sarah Chen",
-      role: "Content Director at TechFlow Digital",
-      avatar: "/placeholder.svg?height=50&width=50",
-    },
-    {
-      quote:
-        "The automated scheduling and analytics insights have transformed how we approach content distribution. It's like having an entire data science team at your fingertips.",
-      author: "Marcus Rodriguez",
-      role: "Marketing Lead at GrowthWise",
-      avatar: "/placeholder.svg?height=50&width=50",
-    },
-    {
-      quote:
-        "From ideation to publication, the AI suite has streamlined our entire content workflow. The smart recommendations and trend analysis are game-changing.",
-      author: "Emma Thompson",
-      role: "Editorial Manager at ContentPro",
-      avatar: "/placeholder.svg?height=50&width=50",
-    }
-  ];
-
+export default function CustomizableTestimonials({ 
+  testimonials,
+  bgGradient = "bg-gradient-to-b from-[#070314] to-[#220a35]",
+  titleGradient = "bg-gradient-to-r from-blue-500 via-cyan-400 to-green-500"
+}: TestimonialProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleTestimonials, setVisibleTestimonials] = useState(3);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -189,11 +150,11 @@ export default function Component() {
   const translateX = -(currentIndex * (100 / visibleTestimonials));
 
   return (
-    <section className="w-full py-12 md:py-20 bg-gradient-to-b from-[#070314] to-[#220a35]">
+    <section className={`w-full py-12 md:py-20 ${bgGradient}`}>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-8 md:mb-16">
           Empowering{" "}
-          <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-green-500 bg-clip-text text-transparent">
+          <span className={`${titleGradient} bg-clip-text text-transparent`}>
             Content Creators
           </span>{" "}
           with AI
@@ -238,9 +199,9 @@ export default function Component() {
                   onClick={prevTestimonials}
                   className="mr-2 text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={currentIndex === 0}
+                  aria-label="Previous testimonials"
                 >
                   <ChevronLeft className="h-6 w-6" />
-                  <span className="sr-only">Previous testimonial</span>
                 </Button>
                 <Button
                   variant="ghost"
@@ -248,9 +209,9 @@ export default function Component() {
                   onClick={nextTestimonials}
                   className="ml-2 text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={currentIndex >= totalTestimonials - visibleTestimonials}
+                  aria-label="Next testimonials"
                 >
                   <ChevronRight className="h-6 w-6" />
-                  <span className="sr-only">Next testimonial</span>
                 </Button>
               </div>
             </>
