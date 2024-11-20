@@ -17,7 +17,7 @@ export default function ScheduleHeroSection() {
             <div className="flex items-center gap-3">
               <a href="#" className="transition-colors">Use Cases</a>
               <span>›</span>
-              <a href="#" className="hover:text-white transition-colors">Scheduling</a>
+              <a href="#" className="hover:text-white transition-colors">Scheduling Content</a>
             </div>
           </nav>
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">

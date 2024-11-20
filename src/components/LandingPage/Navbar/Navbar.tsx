@@ -1,45 +1,54 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { Menu, ChevronRight, ChevronDown, Variable } from 'lucide-react'
-import { Dropdown, UseCasesDropdown, ResourcesDropdown, AboutDropdown } from './Dropdowns'
-import { MobileMenu } from './Mobile_menu'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Menu, ChevronRight, ChevronDown, Variable } from "lucide-react";
+import {
+  Dropdown,
+  UseCasesDropdown,
+  ResourcesDropdown,
+  AboutDropdown,
+} from "./Dropdowns";
+import { MobileMenu } from "./Mobile_menu";
 
 export default function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleDropdownHover = (dropdown: string) => {
-    setHoveredDropdown(dropdown)
-  }
+    setHoveredDropdown(dropdown);
+  };
 
   const handleDropdownLeave = () => {
-    setHoveredDropdown(null)
-  }
+    setHoveredDropdown(null);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0)
-    }
+      setIsScrolled(window.scrollY > 0);
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-transparent border-b border-white/10' : 'bg-black border-b border-transparent'
-      }`}>
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          isScrolled
+            ? "bg-transparent border-b border-white/10"
+            : "bg-black border-b border-transparent"
+        }`}
+      >
         {/* Blur overlay for content behind navbar */}
-        <div 
+        <div
           className="absolute inset-0 z-[-1]"
           style={{
-            backgroundColor: 'rgba(0, 0, 255, 0.1)',
-            backdropFilter: 'blur(100px)',
+            backgroundColor: "rgba(0, 0, 255, 0.1)",
+            backdropFilter: "blur(100px)",
           }}
         />
 
@@ -56,7 +65,7 @@ export default function Navbar() {
                 height={32}
                 className="h-8 w-8"
               />
-              <span className=' font-semibold'>NAME</span>
+              <span className=" font-semibold">NAME</span>
             </Link>
           </div>
 
@@ -64,13 +73,17 @@ export default function Navbar() {
           <nav className="hidden items-center gap-6 lg:flex">
             <Dropdown
               trigger={
-                <button 
+                <button
                   className="flex items-center gap-1 text-sm font-medium text-white hover:text-blue-500"
-                  onMouseEnter={() => handleDropdownHover('useCases')}
+                  onMouseEnter={() => handleDropdownHover("useCases")}
                   onMouseLeave={handleDropdownLeave}
                 >
                   Use cases
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${hoveredDropdown === 'useCases' ? 'rotate-180' : ''}`} />
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      hoveredDropdown === "useCases" ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
               }
             >
@@ -79,13 +92,17 @@ export default function Navbar() {
 
             <Dropdown
               trigger={
-                <button 
+                <button
                   className="flex items-center gap-1 text-sm font-medium text-white hover:text-blue-500"
-                  onMouseEnter={() => handleDropdownHover('resources')}
+                  onMouseEnter={() => handleDropdownHover("resources")}
                   onMouseLeave={handleDropdownLeave}
                 >
                   Resources
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${hoveredDropdown === 'resources' ? 'rotate-180' : ''}`} />
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      hoveredDropdown === "resources" ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
               }
             >
@@ -94,13 +111,17 @@ export default function Navbar() {
 
             <Dropdown
               trigger={
-                <button 
+                <button
                   className="flex items-center gap-1 text-sm font-medium text-white hover:text-blue-500"
-                  onMouseEnter={() => handleDropdownHover('about')}
+                  onMouseEnter={() => handleDropdownHover("about")}
                   onMouseLeave={handleDropdownLeave}
                 >
                   About
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${hoveredDropdown === 'about' ? 'rotate-180' : ''}`} />
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      hoveredDropdown === "about" ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
               }
             >
@@ -135,7 +156,7 @@ export default function Navbar() {
               className="hidden rounded-md bg-white px-4 py-2 text-sm font-medium text-black hover:bg-gray-300 transition-colors duration-200 sm:block"
             >
               Try NAME
-              <ChevronRight className="ml-1 inline-block h-4 w-4 " />
+              <ChevronRight className=" ml-1 inline-block h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
 
             {/* Mobile menu button */}
@@ -150,10 +171,13 @@ export default function Navbar() {
       </header>
 
       {/* Mobile menu */}
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
 
       {/* Spacer div to push content below the navbar */}
       <div className="h-16"></div>
     </>
-  )
+  );
 }

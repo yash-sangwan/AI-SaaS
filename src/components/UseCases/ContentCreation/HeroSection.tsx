@@ -20,7 +20,7 @@ export default function ContentHeroSection() {
         <div className="flex items-center gap-3">
           <a href="#" className=" transition-colors">Use Cases</a>
           <span>›</span>
-          <a href="#" className="hover:text-white transition-colors">Architecture Diagrams</a>
+          <a href="#" className="hover:text-white transition-colors">Content Creation</a>
         </div>
       </nav>
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">

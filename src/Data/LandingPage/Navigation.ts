@@ -8,17 +8,17 @@ export const useCasesData = {
       items: [
         {
           title: 'Content Creation',
-          href: '#',
+          href: '/use-cases/content-creation',
           description: 'Create engaging content quickly with AI assistance',
         },
         {
           title: 'Scheduling Content',
-          href: '#',
+          href: '/use-cases/scheduling-content',
           description: 'Organize and automate your content calendar',
         },
         {
           title: 'AI Analytics',
-          href: '#',
+          href: '/use-cases/ai-analytics',
           description: 'Track performance and optimize with AI-powered insights',
         },
       ],
@@ -30,17 +30,17 @@ export const useCasesData = {
       items: [
         {
           title: 'Collaborative Workflow',
-          href: '#',
+          href: '/use-cases/collaborative-workflow',
           description: 'Work together in real-time for seamless content development',
         },
         {
           title: 'Automated Workflow',
-          href: '#',
+          href: '/use-cases/automated-workflow',
           description: 'Streamline repetitive tasks to save time',
         },
         {
           title: 'AI Assistant',
-          href: '#',
+          href: '/use-cases/ai-assistant',
           description: 'Let AI help draft, review, and refine your content',
         },
       ],
@@ -52,7 +52,7 @@ export const useCasesData = {
       items: [
         {
           title: 'Manage Content from One Place',
-          href: '#',
+          href: '/use-cases/one-for-all',
           description: 'Write, edit, or delete content effortlessly',
         },
   
@@ -66,7 +66,7 @@ export const useCasesData = {
     navigation: [
       {
         title: 'Blog',
-        href: '#',
+        href: '/blog',
         description: 'Improve your social strategy and stay on top of social media.',
         icon: 'FileText',
       },
@@ -86,8 +86,7 @@ export const useCasesData = {
   
   export const aboutData = {
     links: [
-      { title: 'Company', href: '#', arrow: false },
-      { title: 'Careers', href: '#', arrow: false },
+      { title: 'Careers', href: '/careers', arrow: false },
       { title: 'Discord Community', href: '#', arrow: true },
     ],
   };

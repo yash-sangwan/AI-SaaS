@@ -1,12 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Ubuntu } from "next/font/google";
+  import { Ubuntu } from "next/font/google";
 
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["500", "700"],
-});
+  const ubuntu = Ubuntu({
+    subsets: ["latin"],
+    weight: ["500", "700"],
+  });
 
 interface GetStartedProps {
   background?: string;

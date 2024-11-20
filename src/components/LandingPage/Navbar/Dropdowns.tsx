@@ -86,16 +86,16 @@ export function ResourcesDropdown() {
         <h3 className="text-sm font-medium text-gray-400">Resources</h3>
         <div className="space-y-4">
           {resourcesData.navigation.map((item) => (
-            <Link key={item.title} href={item.href} className="group block rounded-lg p-3 hover:bg-white/5">
+            <Link key={item.title} href={item.href} className="group block rounded-lg p-3 hover:bg-white/5" target="_blank" rel="noopener noreferrer">
               <div className="flex items-start gap-3">
-                <div className="mt-1 h-5 w-5 text-white/70 group-hover:text-blue-500">
-                  {item.icon === 'FileText' && <FileText className="h-5 w-5" />}
-                  {item.icon === 'HelpCircle' && <BookOpenText className="h-5 w-5" />}
-                </div>
-                <div>
-                  <h4 className="font-medium text-white group-hover:text-blue-500">{item.title}</h4>
-                  <p className="text-sm text-white/70">{item.description}</p>
-                </div>
+              <div className="mt-1 h-5 w-5 text-white/70 group-hover:text-blue-500">
+                {item.icon === 'FileText' && <FileText className="h-5 w-5" />}
+                {item.icon === 'HelpCircle' && <BookOpenText className="h-5 w-5" />}
+              </div>
+              <div>
+                <h4 className="font-medium text-white group-hover:text-blue-500">{item.title}</h4>
+                <p className="text-sm text-white/70">{item.description}</p>
+              </div>
               </div>
             </Link>
           ))}
